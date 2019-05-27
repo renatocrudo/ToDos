@@ -3,11 +3,7 @@ var inputElement = document.querySelector("#app input");
 var buttonElement = document.querySelector("#app button");
 
 //criando array para armazenar os todos
-var todos = [
-  "Fazer café",
-  "Estudar Javascript",
-  "Acessar comunidade da Rocketseat"
-];
+var todos = JSON.parse(localStorage.getItem("list_todos")) || [];
 
 function renderTodos() {
   //zerando meu html
@@ -41,6 +37,7 @@ function addTodo() {
   todos.push(todoText);
   inputElement.value = "";
   renderTodos();
+  saveToStorage();
 }
 
 //adicionando a função de clicar no botão
@@ -50,4 +47,10 @@ buttonElement.onclick = addTodo;
 function deleteTodo(pos) {
   todos.splice(pos, 1);
   renderTodos();
+  saveToStorage();
+}
+
+//criando função para salvar no storage do navegador
+function saveToStorage() {
+  localStorage.setItem("list_todos", JSON.stringify(todos));
 }
