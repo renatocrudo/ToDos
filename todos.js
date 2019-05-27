@@ -10,6 +10,8 @@ var todos = [
 ];
 
 function renderTodos() {
+  //zerando meu html
+  listElement.innerHTML = "";
   for (todo of todos) {
     var todoElement = document.createElement("li");
     var todoText = document.createTextNode(todo);
@@ -20,3 +22,15 @@ function renderTodos() {
 }
 
 renderTodos();
+
+//adicionando novo todo
+function addTodo() {
+  var todoText = inputElement.value;
+
+  todos.push(todoText);
+  inputElement.value = "";
+  renderTodos();
+}
+
+//adicionando a função de clicar no botão
+buttonElement.onclick = addTodo;
