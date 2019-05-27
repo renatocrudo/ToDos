@@ -18,6 +18,10 @@ function renderTodos() {
 
     var linkElement = document.createElement("a");
     linkElement.setAttribute("href", "#");
+    //pegando a posição do array
+    var pos = todos.indexOf(todo);
+    linkElement.setAttribute("onclick", "deleteTodo(" + pos + ")");
+
     var linkText = document.createTextNode("Excluir");
 
     linkElement.appendChild(linkText);
@@ -41,3 +45,9 @@ function addTodo() {
 
 //adicionando a função de clicar no botão
 buttonElement.onclick = addTodo;
+
+//criando função para excluir
+function deleteTodo(pos) {
+  todos.splice(pos, 1);
+  renderTodos();
+}
